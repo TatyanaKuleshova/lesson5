@@ -33,15 +33,17 @@ def max_div_prime(n):
 
 def canonical_decomposition(n):
     divid = []
-    i = 2
-    while i * i <= n:
-        n //= i
-        divid.append(i)
-    else:
-        i = i + 1
-    if n > 1:
-        divid.append(n)
+    x = 2
+    while n != 1:
+        can_list = [i for i in range(1, x + 1) if x % i == 0 and n % x == 0]
+        if len(can_list) == 2:
+            divid.append(x)
+            n = n / x
+            x = 0
+        x += 1
+
     return divid
+
 
 # PRO 5. Функция выводит самый большой делитель числа, отличный от самого числа
 
